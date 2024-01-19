@@ -1,4 +1,4 @@
-          
+
 const jsPsych = initJsPsych({
   on_finish: function () {
     jsPsych.data.displayData();
@@ -9,38 +9,45 @@ const jsPsych = initJsPsych({
   ]
 });
 
-// hey arin
 let sub_id = jsPsych.data.getURLVariable('workerId');
 if (sub_id === undefined) {
   sub_id = jsPsych.randomization.randomID(10);
 }
-jsPsych.data.addProperties({subject_id: sub_id});
+jsPsych.data.addProperties({ subject_id: sub_id });
 const fname = `${sub_id}.csv`;
 console.log(fname)
 let timeline = [];
 
 var preload = {
   type: jsPsychPreload,
-  images: ['./img/Wall-e.png', 
-  './img/Taylor.png',
-  './img/Spongebob.png',
-  './img/Sandy.png',
-  './img/R2D2.png',
-  './img/Mickey.png',
-  './img/luigi.png',
-  './img/Lisa.png',
-  './img/C3P-0.png',
-  './img/Bugs.png',
-  './img/Baxter_nf.png',
-  './img/Bart.png'
-]
+  images: ['./img/bad/bloodknife1.jpg',
+    './img/bad/caraccident2.jpg',
+    './img/bad/feces2.jpg',
+    './img/bad/fire9.jpg',
+    './img/bad/planecrash2.jpg',
+    './img/bad/shot3.jpg',
+    './img/good/dessert2.jpg',
+    './img/good/flowers2.jpg',
+    './img/good/flowers6.jpg',
+    './img/good/food6.jpg',
+    './img/good/wedding4.jpg',
+    './img/good/weddingring1.jpg',
+    './img/pos_control/Sface1.jpg',
+    './img/pos_control/Sface2.jpg',
+    './img/pos_control/Sface3.jpg',
+    './img/target_victim/Target1.png',
+    './img/target_victim/Target2.png',
+    './img/target_victim/Target3.png',
+    './img/target_victim/Target4.png',
+    './img/target_victim/Target5.png']
+
 };
 
 
 
 timeline.push(preload)
 
-var competent_right = Math.floor(Math.random()*2);
+var competent_right = Math.floor(Math.random() * 2);
 let choices_competent;
 let choices_knowledgeable;
 let choices_capable;
@@ -80,20 +87,15 @@ const target_list = [
   {stimulus: 'Baxter_nf'},
   {stimulus: 'Bart'}]; */
 
-  const target_list = [
-    {stimulus: '<img src="./img/Wall-e.png">'},
-    {stimulus: '<img src="./img/Taylor.png">'},
-    {stimulus: '<img src="./img/Spongebob.png">'},
-    {stimulus: '<img src="./img/Sandy.png">'},
-    {stimulus: '<img src="./img/R2D2.png">'},
-    {stimulus: '<img src="./img/Mickey.png">'},
-    {stimulus: '<img src="./img/luigi.png">'},
-    {stimulus: '<img src="./img/Lisa.png">'},
-    {stimulus: '<img src="./img/C3P-0.png">'},
-    {stimulus: '<img src="./img/Bugs.png">'},
-    {stimulus: '<img src="./img/Baxter_nf.png">'},
-    {stimulus: '<img src="./img/Bart.png">'}];
-  
+const target_list = [
+  { stimulus: '<img src="./img/pos_control/Sface1.jpg">' },
+  { stimulus: '<img src="./img/pos_control/Sface2.jpg">' },
+  { stimulus: '<img src="./img/pos_control/Sface3.jpg">' },
+  { stimulus: '<img src="./img/target_victim/Target1.png">' },
+  { stimulus: '<img src="./img/target_victim/Target2.png">' },
+  { stimulus: '<img src="./img/target_victim/Target3.png">' },
+  { stimulus: '<img src="./img/target_victim/Target4.png">' },
+  { stimulus: '<img src="./img/target_victim/Target5.png">' }];
 
 const mt_trial_competent = {
   type: jsPsychHtmlButtonResponsePES,
@@ -234,7 +236,7 @@ const save_data = {
   action: "save",
   experiment_id: "v2ui0QxWeayJ",
   filename: fname,
-  data_string: ()=>jsPsych.data.get().csv()
+  data_string: () => jsPsych.data.get().csv()
 };
 timeline.push(save_data);
 
