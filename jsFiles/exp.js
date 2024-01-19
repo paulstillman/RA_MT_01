@@ -47,21 +47,11 @@ var preload = {
 
 timeline.push(preload)
 
-var competent_right = Math.floor(Math.random() * 2);
-let choices_competent;
-let choices_knowledgeable;
-let choices_capable;
-let choices_reliable;
-if (competent_right === 1) {
-  choices_competent = ['Mostly<br>Incompetent', 'Mostly<br>Competent'];
-  choices_knowledgeable = ['Mostly<br>Unknowledgeable', 'Mostly<br>Knowledgeable'];
-  choices_capable = ['Mostly<br>Incapable', 'Mostly<br>Capable'];
-  choices_reliable = ['Mostly<br>Unreliable', 'Mostly<br>Reliable'];
+const good_right = Math.floor(Math.random() * 2);
+if (good_right === 1) {
+  choices_goodbad = ['BAD', 'GOOD'];
 } else {
-  choices_competent = ['Mostly<br>Competent', 'Mostly<br>Incompetent'];
-  choices_knowledgeable = ['Mostly<br>Knowledgeable', 'Mostly<br>Unknowledgeable'];
-  choices_capable = ['Mostly<br>Capable', 'Mostly<br>Incapable'];
-  choices_reliable = ['Mostly<br>Reliable', 'Mostly<br>Unreliable'];
+  choices_goodbad = ['GOOD', 'BAD'];
 }
 
 
@@ -95,20 +85,33 @@ const target_list = [
   { stimulus: '<img src="./img/target_victim/Target2.png">' },
   { stimulus: '<img src="./img/target_victim/Target3.png">' },
   { stimulus: '<img src="./img/target_victim/Target4.png">' },
-  { stimulus: '<img src="./img/target_victim/Target5.png">' }];
+  { stimulus: '<img src="./img/target_victim/Target5.png">' },
+  { stimulus: '<img src="./img/good/dessert2.jpg">' },
+  { stimulus: '<img src="./img/good/flowers2.jpg">' },
+  { stimulus: '<img src="./img/good/flowers6.jpg">' },
+  { stimulus: '<img src="./img/good/food6.jpg">' },
+  { stimulus: '<img src="./img/good/wedding4.jpg">' },
+  { stimulus: '<img src="./img/good/weddingring1.jpg">' },
+  { stimulus: '<img src="./img/bad/bloodknife1.jpg">' },
+  { stimulus: '<img src="./img/bad/caraccident2.jpg">' },
+  { stimulus: '<img src="./img/bad/feces2.jpg">' },
+  { stimulus: '<img src="./img/bad/planecrash2.jpg">' },
+  { stimulus: '<img src="./img/bad/shot3.jpg">' }
+];
+
 
 const mt_trial_competent = {
   type: jsPsychHtmlButtonResponsePES,
   // stimulus: '<img src="./img/' + jsPsych.timelineVariable('stimulus') + '.png">',
   stimulus: jsPsych.timelineVariable('stimulus'),
-  choices: choices_competent,
+  choices: choices_goodbad,
   adjust_aspect_ratio: 0,
   button_html: ['<button class="jspsych-btn mt-response-btn" id="left_response" style = "position:absolute; left: 0px; top: 0px">%choice%</button>', '<button class="jspsych-btn mt-response-btn" id="right_response" style = "position:absolute; right:0px; top: 0px">%choice%</button>'],
   slowmouse_message: `Please begin moving your mouse<br>as soon as the image appears`,
   mouseout_message: `Please keep your mouse<br>in the browser window`,
   data: {
     task: 'MT',
-    competent_right: competent_right
+    good_right: good_right
   },
   extensions: [
     { type: jsPsychExtensionMouseTracking }
