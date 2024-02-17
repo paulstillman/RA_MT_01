@@ -55,11 +55,13 @@ var preload = {
     './img/bad/fire9.jpg',
     './img/bad/planecrash2.jpg',
     './img/bad/shot3.jpg',
-    './img/new_pos_control/Dog6.jpg',
-    './img/new_pos_control/Cat5.jpg',
-    './img/new_pos_control/Lake12.jpg',
-    './img/new_pos_control/Rainbow2.jpg',
-    './img/new_pos_control/Lake2.jpg',
+    './img/good/Dog6.jpg',
+    './img/good/Cat5.jpg',
+    './img/good/flowers2.jpg',
+    './img/good/flowers6.jpg',
+    './img/good/Lake12.jpg',
+    './img/good/Rainbow2.jpg',
+    './img/good/Lake2.jpg',
     './img/target_victim/Target1.png',
     './img/target_victim/Target2.png',
     './img/target_victim/Target3.png',
@@ -82,10 +84,97 @@ if (good_right === 1) {
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true,
-  message: "You will now enter full screen"
+  message: "You will now enter full screen, please do not exit full screen until the end of the experiment."
 }
 
-timeline.push(enter_fullscreen)
+// timeline.push(enter_fullscreen)
+
+
+/* instructions */
+var instr_page1 = `<div class='instructions'>
+
+<p>For the next part of the study, we are interested in your evaluations of different things, 
+including the people you got to know in the previous part of the experiment.</p>
+
+<p>You will be presented with many different pictures, and asked to evaluate whether you believe 
+the person or image depicted in the picture is "GOOD" or "BAD"</p></div>`; 
+
+var instr_page2 = `<div class='instructions'>
+
+<p>For each evaluation, there will be a button that says "START". Pressing the start button will 
+make the image appear. After it appears, select either GOOD or BAD.</p>
+
+<p>Please start moving your mouse as soon as the picture appears 
+(do not wait until you have made a decision to start moving your mouse).</p>
+
+<p>Please also do not move your mouse outside of the browser window 
+(since you are in full screen mode, this should be unlikely).</p>
+
+<p>Try to make your evaluations quickly and accurately. </p> 
+
+<p>On the next slide, you will do a practice trial</p> 
+
+</div>`; 
+
+
+// combine pages into blocks
+instr_block1 = {
+    type: jsPsychInstructions,
+    pages: [instr_page1, instr_page2],
+    show_clickable_nav: true,
+};
+
+timeline.push(instr_block1)
+
+const start_screen_practice = {
+  type: jsPsychHtmlButtonResponsePES,
+  stimulus: `Practice Trial: Press the START button below to begin`,
+  choices: ['START'],
+  data: {
+    task: 'start'
+  },
+  button_html: '<button class="jspsych-btn" style = "position:absolute; bottom: 0px; left: 50%; transform:translate(-50%); font-weight: bold">%choice%</button>',
+};
+
+const mt_trial_practice = {
+  type: jsPsychHtmlButtonResponsePES,
+  stimulus: '<img src="./img/good/flowers6.jpg">',
+  choices: choices_goodbad,
+  adjust_aspect_ratio: 0,
+  button_html: ['<button class="jspsych-btn mt-response-btn" id="left_response" style = "position:absolute; left: 0px; top: 0px">%choice%</button>', '<button class="jspsych-btn mt-response-btn" id="right_response" style = "position:absolute; right:0px; top: 0px">%choice%</button>'],
+  slowmouse_message: `Please begin moving your mouse<br>as soon as the image appears`,
+  mouseout_message: `Please keep your mouse<br>in the browser window`,
+  data: {
+    task: 'MT_practice',
+    good_right: good_right,
+    stim_type:  'practice'
+  },
+  extensions: [
+    { type: jsPsychExtensionMouseTracking }
+  ]
+};
+timeline.push(start_screen_practice)
+timeline.push(mt_trial_practice)
+
+
+var instr_page3 = `<div class='instructions'>
+
+<p>You will now do the evaluation task. In total, you will do 24 evaluations. Some items may be repeated.</p>
+
+<p>Again, please start moving your mouse as soon as the picture appears, 
+and don't move your mouse outside of the browser window.</p>
+
+<p> After the evaluation task, you will be redirected to the last part of the study.</p>
+
+<p>Press next to begin the evaluation task</p></div>`; 
+instr_block2 = {
+  type: jsPsychInstructions,
+  pages: [instr_page3],
+  show_clickable_nav: true,
+};
+
+timeline.push(instr_block2)
+
 
 const target_list = [
   { stimulus: kface, stim_type: 'kevin' },
@@ -100,14 +189,16 @@ const target_list = [
   { stimulus: sface, stim_type: 'scott'  },
   { stimulus: sface, stim_type: 'scott'  },
   { stimulus: sface, stim_type: 'scott'  },
-  { stimulus: '<img src="./img/new_pos_control/Cat5.jpg">', stim_type: 'positive' },
-  { stimulus: '<img src="./img/new_pos_control/Lake12.jpg">', stim_type: 'positive' },
-  { stimulus: '<img src="./img/new_pos_control/Rainbow2.jpg">', stim_type: 'positive' },
-  { stimulus: '<img src="./img/new_pos_control/Lake2.jpg">', stim_type: 'positive' },
-  { stimulus: '<img src="./img/new_pos_control/Dog6.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/Cat5.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/Lake12.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/Rainbow2.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/flowers2.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/Lake2.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/Dog6.jpg">', stim_type: 'positive' },
   { stimulus: '<img src="./img/bad/bloodknife1.jpg">', stim_type: 'negative' },
   { stimulus: '<img src="./img/bad/caraccident2.jpg">', stim_type: 'negative' },
   { stimulus: '<img src="./img/bad/feces2.jpg">', stim_type: 'negative' },
+  { stimulus: '<img src="./img/bad/fire9.jpg">', stim_type: 'negative' },
   { stimulus: '<img src="./img/bad/planecrash2.jpg">', stim_type: 'negative' },
   { stimulus: '<img src="./img/bad/shot3.jpg">', stim_type: 'negative' }
 ];
