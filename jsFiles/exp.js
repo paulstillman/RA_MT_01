@@ -9,6 +9,14 @@ const jsPsych = initJsPsych({
   ]
 });
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
 let sub_id = jsPsych.data.getURLVariable('workerId');
 if (sub_id === undefined) {
   sub_id = jsPsych.randomization.randomID(10);
@@ -16,6 +24,27 @@ if (sub_id === undefined) {
 jsPsych.data.addProperties({ subject_id: sub_id });
 const fname = `${sub_id}.csv`;
 console.log(fname)
+
+
+let kface = jsPsych.data.getURLVariable('kface');
+let fface = jsPsych.data.getURLVariable('fface');
+let sface = jsPsych.data.getURLVariable('sface');
+if (kface === undefined) {
+  let face_array = [1,2,3,4,5]
+  shuffleArray(face_array)
+  kface = face_array[0];
+  fface = face_array[1];
+  sface = face_array[2];
+}
+kface = '<img src="./img/target_victim/Target' + kface + '.png">'
+fface = '<img src="./img/target_victim/Target' + fface + '.png">'
+sface = '<img src="./img/target_victim/Target' + sface + '.png">'
+
+console.log(kface)
+console.log(fface)
+console.log(sface)
+
+
 let timeline = [];
 
 var preload = {
@@ -32,15 +61,11 @@ var preload = {
     './img/good/food6.jpg',
     './img/good/wedding4.jpg',
     './img/good/weddingring1.jpg',
-    './img/pos_control/Sface1.jpg',
-    './img/pos_control/Sface2.jpg',
-    './img/pos_control/Sface3.jpg',
     './img/target_victim/Target1.png',
     './img/target_victim/Target2.png',
     './img/target_victim/Target3.png',
     './img/target_victim/Target4.png',
     './img/target_victim/Target5.png']
-
 };
 
 
@@ -62,41 +87,31 @@ var enter_fullscreen = {
 }
 
 timeline.push(enter_fullscreen)
-/*
-const target_list = [
-  {stimulus: 'Wall-e'},
-  {stimulus: 'Taylor'},
-  {stimulus: 'Spongebob'},
-  {stimulus: 'Sandy'},
-  {stimulus: 'R2D2'},
-  {stimulus: 'Mickey'},
-  {stimulus: 'luigi'},
-  {stimulus: 'Lisa'},
-  {stimulus: 'C3P-0'},
-  {stimulus: 'Bugs'},
-  {stimulus: 'Baxter_nf'},
-  {stimulus: 'Bart'}]; */
 
 const target_list = [
-  { stimulus: '<img src="./img/pos_control/Sface1.jpg">' },
-  { stimulus: '<img src="./img/pos_control/Sface2.jpg">' },
-  { stimulus: '<img src="./img/pos_control/Sface3.jpg">' },
-  { stimulus: '<img src="./img/target_victim/Target1.png">' },
-  { stimulus: '<img src="./img/target_victim/Target2.png">' },
-  { stimulus: '<img src="./img/target_victim/Target3.png">' },
-  { stimulus: '<img src="./img/target_victim/Target4.png">' },
-  { stimulus: '<img src="./img/target_victim/Target5.png">' },
-  { stimulus: '<img src="./img/good/dessert2.jpg">' },
-  { stimulus: '<img src="./img/good/flowers2.jpg">' },
-  { stimulus: '<img src="./img/good/flowers6.jpg">' },
-  { stimulus: '<img src="./img/good/food6.jpg">' },
-  { stimulus: '<img src="./img/good/wedding4.jpg">' },
-  { stimulus: '<img src="./img/good/weddingring1.jpg">' },
-  { stimulus: '<img src="./img/bad/bloodknife1.jpg">' },
-  { stimulus: '<img src="./img/bad/caraccident2.jpg">' },
-  { stimulus: '<img src="./img/bad/feces2.jpg">' },
-  { stimulus: '<img src="./img/bad/planecrash2.jpg">' },
-  { stimulus: '<img src="./img/bad/shot3.jpg">' }
+  { stimulus: kface, stim_type: 'kevin' },
+  { stimulus: kface, stim_type: 'kevin' },
+  { stimulus: kface, stim_type: 'kevin' },
+  { stimulus: kface, stim_type: 'kevin' },
+  { stimulus: fface, stim_type: 'francis'  },
+  { stimulus: fface, stim_type: 'francis'  },
+  { stimulus: fface, stim_type: 'francis'  },
+  { stimulus: fface, stim_type: 'francis'  },
+  { stimulus: sface, stim_type: 'scott'  },
+  { stimulus: sface, stim_type: 'scott'  },
+  { stimulus: sface, stim_type: 'scott'  },
+  { stimulus: sface, stim_type: 'scott'  },
+  { stimulus: '<img src="./img/good/dessert2.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/flowers2.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/flowers6.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/food6.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/wedding4.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/good/weddingring1.jpg">', stim_type: 'positive' },
+  { stimulus: '<img src="./img/bad/bloodknife1.jpg">', stim_type: 'negative' },
+  { stimulus: '<img src="./img/bad/caraccident2.jpg">', stim_type: 'negative' },
+  { stimulus: '<img src="./img/bad/feces2.jpg">', stim_type: 'negative' },
+  { stimulus: '<img src="./img/bad/planecrash2.jpg">', stim_type: 'negative' },
+  { stimulus: '<img src="./img/bad/shot3.jpg">', stim_type: 'negative' }
 ];
 
 
@@ -111,7 +126,8 @@ const mt_trial_competent = {
   mouseout_message: `Please keep your mouse<br>in the browser window`,
   data: {
     task: 'MT',
-    good_right: good_right
+    good_right: good_right,
+    stim_type:  jsPsych.timelineVariable('stim_type')
   },
   extensions: [
     { type: jsPsychExtensionMouseTracking }
@@ -131,7 +147,8 @@ const start_screen = {
 
 var test_procedure = {
   timeline: [start_screen, mt_trial_competent],
-  timeline_variables: target_list
+  timeline_variables: target_list,
+  randomize_order: true
 }
 
 timeline.push(test_procedure)
