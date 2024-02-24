@@ -67,7 +67,7 @@ var preload = {
     './img/target_victim/Target2.png',
     './img/target_victim/Target3.png',
     './img/target_victim/Target4.png',
-    './img/target_victim/Target5.png',]
+    './img/target_victim/Target5.png']
 };
 
 
