@@ -98,20 +98,18 @@ var instr_page1 = `<div class='instructions'>
 including the people you got to know in the previous part of the experiment.</p>
 
 <p>You will be presented with many different images, and asked to evaluate whether you believe 
-the person or image depicted in the picture is "GOOD" or "BAD"</p></div>`; 
+the person, scene, object or animal depicted in the image is "GOOD" or "BAD"</p></div>`; 
 
 var instr_page2 = `<div class='instructions'>
 
-<p>For each evaluation, there will be a button at the bottom that says "START". Pressing the start button will 
-make the image appear. After it appears, select either GOOD or BAD as soon as you can.</p>
+<p>For each evaluation, there will be a button at the bottom of your screen that says "START". Pressing the START button will 
+make the image appear. After the image appears, select either GOOD or BAD immediately.</p>
 
-<p>Please start moving your mouse as soon as the image appears 
-(do not wait until you have made a decision to start moving your mouse).</p>
+<p>Please start moving your mouse as soon as the image appears and do not wait until you have made a decision to start moving your mouse.</p>
 
-<p>Please also do not move your mouse outside of the browser window 
-(since you are in full screen mode, this should be unlikely).</p>
+<p>Please do not move your mouse outside of the browser window or leave the full-screen.</p>
 
-<p>Try to make your evaluations quickly and accurately. </p> 
+<p>Try to make your evaluations as quickly and as accurately as possible. </p> 
 
 <p>On the next slide, you will do a practice trial</p> 
 
