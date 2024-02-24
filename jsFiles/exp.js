@@ -55,6 +55,7 @@ var preload = {
     './img/bad/fire9.jpg',
     './img/bad/planecrash2.jpg',
     './img/bad/shot3.jpg',
+    './img/bad/Jail2.jpg',
     './img/good/Dog6.jpg',
     './img/good/Cat5.jpg',
     './img/good/flowers2.jpg',
@@ -66,7 +67,7 @@ var preload = {
     './img/target_victim/Target2.png',
     './img/target_victim/Target3.png',
     './img/target_victim/Target4.png',
-    './img/target_victim/Target5.png']
+    './img/target_victim/Target5.png',]
 };
 
 
@@ -96,15 +97,15 @@ var instr_page1 = `<div class='instructions'>
 <p>For the next part of the study, we are interested in your evaluations of different things, 
 including the people you got to know in the previous part of the experiment.</p>
 
-<p>You will be presented with many different pictures, and asked to evaluate whether you believe 
+<p>You will be presented with many different images, and asked to evaluate whether you believe 
 the person or image depicted in the picture is "GOOD" or "BAD"</p></div>`; 
 
 var instr_page2 = `<div class='instructions'>
 
-<p>For each evaluation, there will be a button that says "START". Pressing the start button will 
-make the image appear. After it appears, select either GOOD or BAD.</p>
+<p>For each evaluation, there will be a button at the bottom that says "START". Pressing the start button will 
+make the image appear. After it appears, select either GOOD or BAD as soon as you can.</p>
 
-<p>Please start moving your mouse as soon as the picture appears 
+<p>Please start moving your mouse as soon as the image appears 
 (do not wait until you have made a decision to start moving your mouse).</p>
 
 <p>Please also do not move your mouse outside of the browser window 
@@ -159,7 +160,7 @@ timeline.push(mt_trial_practice)
 
 var instr_page3 = `<div class='instructions'>
 
-<p>You will now do the evaluation task. In total, you will do 24 evaluations. Some items may be repeated.</p>
+<p>You will now do the evaluation task. In total, you will do 24 evaluations. Some images may be repeated.</p>
 
 <p>Again, please start moving your mouse as soon as the picture appears, 
 and don't move your mouse outside of the browser window.</p>
