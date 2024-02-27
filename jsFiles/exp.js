@@ -1,8 +1,9 @@
 
 const jsPsych = initJsPsych({
   on_finish: function () {
-    jsPsych.data.displayData();
+    // jsPsych.data.displayData();
     // console.log(jsPsych.data.get().csv());
+    window.location = "https://www.cnn.com"
   },
   extensions: [
     { type: jsPsychExtensionMouseTracking, params: { minimum_sample_time: 0, events: ['mousemove', 'mouseleave'] } }
@@ -87,8 +88,12 @@ var enter_fullscreen = {
   fullscreen_mode: true,
   message: "You will now enter full screen, please do not exit full screen until the end of the experiment."
 }
+timeline.push(enter_fullscreen)
 
-// timeline.push(enter_fullscreen)
+var browsercheck = {
+  type: jsPsychBrowserCheck
+};
+timeline.push(browsercheck)
 
 
 /* instructions */
@@ -111,7 +116,7 @@ make the image appear. After the image appears, select either GOOD or BAD immedi
 
 <p>Try to make your evaluations as quickly and as accurately as possible. </p> 
 
-<p>On the next slide, you will do a practice trial</p> 
+<p>Once you press next, you will do 4 practice trials</p> 
 
 </div>`; 
 
@@ -135,7 +140,7 @@ const start_screen_practice = {
   button_html: '<button class="jspsych-btn" style = "position:absolute; bottom: 0px; left: 50%; transform:translate(-50%); font-weight: bold">%choice%</button>',
 };
 
-const mt_trial_practice = {
+const mt_trial_practice_flowers = {
   type: jsPsychHtmlButtonResponsePES,
   stimulus: '<img src="./img/good/flowers6.jpg">',
   choices: choices_goodbad,
@@ -152,8 +157,32 @@ const mt_trial_practice = {
     { type: jsPsychExtensionMouseTracking }
   ]
 };
+const mt_trial_practice_jail = {
+  type: jsPsychHtmlButtonResponsePES,
+  stimulus: '<img src="./img/bad/Jail2.jpg">',
+  choices: choices_goodbad,
+  adjust_aspect_ratio: 0,
+  button_html: ['<button class="jspsych-btn mt-response-btn" id="left_response" style = "position:absolute; left: 0px; top: 0px">%choice%</button>', '<button class="jspsych-btn mt-response-btn" id="right_response" style = "position:absolute; right:0px; top: 0px">%choice%</button>'],
+  slowmouse_message: `Please begin moving your mouse<br>as soon as the image appears`,
+  mouseout_message: `Please keep your mouse<br>in the browser window`,
+  data: {
+    task: 'MT_practice',
+    good_right: good_right,
+    stim_type:  'practice'
+  },
+  extensions: [
+    { type: jsPsychExtensionMouseTracking }
+  ]
+};
+
 timeline.push(start_screen_practice)
-timeline.push(mt_trial_practice)
+timeline.push(mt_trial_practice_flowers)
+timeline.push(start_screen_practice)
+timeline.push(mt_trial_practice_jail)
+timeline.push(start_screen_practice)
+timeline.push(mt_trial_practice_flowers)
+timeline.push(start_screen_practice)
+timeline.push(mt_trial_practice_jail)
 
 
 var instr_page3 = `<div class='instructions'>
@@ -329,6 +358,12 @@ var debrief_block = {
 };
 timeline.push(debrief_block);
 */
+
+var browsercheck = {
+  type: jsPsychBrowserCheck
+};
+timeline.push(browsercheck)
+
 
 var leave_fullscreen = {
   type: jsPsychFullscreen,
