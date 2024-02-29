@@ -3,12 +3,22 @@ const jsPsych = initJsPsych({
   on_finish: function () {
     // jsPsych.data.displayData();
     // console.log(jsPsych.data.get().csv());
-    window.location = "https://www.cnn.com"
+    window.location = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_1CdBpT9qthmaMe2?idnum=xxx"
   },
   extensions: [
     { type: jsPsychExtensionMouseTracking, params: { minimum_sample_time: 0, events: ['mousemove', 'mouseleave'] } }
   ]
 });
+
+// to pass:
+// idnum
+// cond
+// kface
+// kevin
+// fface
+// francis
+// sface
+// scott
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -18,7 +28,11 @@ function shuffleArray(array) {
 }
 
 
-let sub_id = jsPsych.data.getURLVariable('workerId');
+let sub_id = jsPsych.data.getURLVariable('idnum');
+let kevin = jsPsych.data.getURLVariable('kevin');
+let francis = jsPsych.data.getURLVariable('francis');
+let scott = jsPsych.data.getURLVariable('scott');
+
 if (sub_id === undefined) {
   sub_id = jsPsych.randomization.randomID(10);
 }
@@ -36,7 +50,19 @@ if (kface === undefined) {
   kface = face_array[0];
   fface = face_array[1];
   sface = face_array[2];
+  kevin = 'NOIMG'
+  francis = 'NOIMG'
+  scott = 'NOIMG'
 }
+var link_redirect = `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_1CdBpT9qthmaMe2?` +
+                    `idnum=${sub_id}&` +
+                    `kface=${kface}&` +
+                    `fface=${fface}&` +
+                    `sface=${sface}&` +
+                    `kevin=${kevin}&` +
+                    `francis=${francis}&` +
+                    `scott=${scott}`
+
 kface = '<img src="./img/target_victim/Target' + kface + '.png">'
 fface = '<img src="./img/target_victim/Target' + fface + '.png">'
 sface = '<img src="./img/target_victim/Target' + sface + '.png">'
@@ -44,6 +70,11 @@ sface = '<img src="./img/target_victim/Target' + sface + '.png">'
 console.log(kface)
 console.log(fface)
 console.log(sface)
+
+
+
+console.log(link_redirect)
+
 
 
 let timeline = [];
@@ -382,6 +413,17 @@ const save_data = {
   data_string: () => jsPsych.data.get().csv()
 };
 timeline.push(save_data);
+
+                    
+
+
+var final_trial = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: `<p>Press the following button to Continue to the next part of the study</p>
+    <p><a href="${link_redirect}">Click here to contine to the last part of the study</a>.</p>`,
+  choices: "NO_KEYS"
+}
+timeline.push(final_trial);
 
 
 jsPsych.run(timeline);
