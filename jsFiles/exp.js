@@ -81,7 +81,7 @@ let timeline = [];
 
 var preload = {
   type: jsPsychPreload,
-  images: ['./img/bad/bloodknife1.jpg',
+  images: ['./img/bad/war6.jpg',
     './img/bad/caraccident2.jpg',
     './img/bad/feces2.jpg',
     './img/bad/fire9.jpg',
@@ -254,7 +254,7 @@ const target_list = [
   { stimulus: '<img src="./img/good/flowers2.jpg">', stim_type: 'positive' },
   { stimulus: '<img src="./img/good/Lake2.jpg">', stim_type: 'positive' },
   { stimulus: '<img src="./img/good/Dog6.jpg">', stim_type: 'positive' },
-  { stimulus: '<img src="./img/bad/bloodknife1.jpg">', stim_type: 'negative' },
+  { stimulus: '<img src="./img/bad/war6.jpg">', stim_type: 'negative' },
   { stimulus: '<img src="./img/bad/caraccident2.jpg">', stim_type: 'negative' },
   { stimulus: '<img src="./img/bad/feces2.jpg">', stim_type: 'negative' },
   { stimulus: '<img src="./img/bad/fire9.jpg">', stim_type: 'negative' },
