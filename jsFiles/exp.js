@@ -31,8 +31,8 @@ function shuffleArray(array) {
 let sub_id = jsPsych.data.getURLVariable('idnum');
 let kevin = jsPsych.data.getURLVariable('kevin');
 let francis = jsPsych.data.getURLVariable('francis');
-let scott = jsPsych.data.getURLVariable('scott');
-let kevin_try = jsPsych.data.getURLVariable('scott')
+let scott = jsPsych.data.getURLVariable('scott')
+
 
 if (sub_id === undefined) {
   sub_id = jsPsych.randomization.randomID(10);
