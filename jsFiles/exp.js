@@ -59,9 +59,9 @@ var link_redirect = `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_1CdBpT9qth
                     `kface=${kface}&` +
                     `fface=${fface}&` +
                     `sface=${sface}&` +
-                    `kevin=${kevin}&` +
-                    `francis=${francis}&` +
-                    `scott=${scott}`
+                    `kevin=${encodeURIComponent(kevin)}&` +
+                    `francis=${encodeURIComponent(francis)}&` +
+                    `scott=${encodeURIComponent(scott)}`
 
 kface = '<img src="./img/target_victim/Target' + kface + '.png">'
 fface = '<img src="./img/target_victim/Target' + fface + '.png">'
@@ -70,7 +70,6 @@ sface = '<img src="./img/target_victim/Target' + sface + '.png">'
 console.log(kface)
 console.log(fface)
 console.log(sface)
-
 
 
 console.log(link_redirect)
