@@ -34,8 +34,6 @@ let francis = jsPsych.data.getURLVariable('francis');
 let scott = jsPsych.data.getURLVariable('scott');
 let kevin_try = jsPsych.data.getURLVariable('scott')
 
-console.log(kevin_try)
-
 if (sub_id === undefined) {
   sub_id = jsPsych.randomization.randomID(10);
 }
@@ -62,10 +60,9 @@ var link_redirect = `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_1CdBpT9qth
                     `kface=${kface}&` +
                     `fface=${fface}&` +
                     `sface=${sface}&` +
-                    `kevin=${encodeURIComponent(kevin)}&` +
-                    `francis=${encodeURIComponent(francis)}&` +
-                    `scott=${encodeURIComponent(scott)}&` +
-                    `kevin_try=${kevin_try}`
+                    `kevin=${kevin}&` +
+                    `francis=${francis}&` +
+                    `scott=${scott}`
 
 kface = '<img src="./img/target_victim/Target' + kface + '.png">'
 fface = '<img src="./img/target_victim/Target' + fface + '.png">'
