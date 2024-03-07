@@ -29,6 +29,7 @@ function shuffleArray(array) {
 
 
 let sub_id = jsPsych.data.getURLVariable('idnum');
+let cond = jsPsych.data.getURLVariable('cond');
 let kevin = jsPsych.data.getURLVariable('kevin');
 let francis = jsPsych.data.getURLVariable('francis');
 let scott = jsPsych.data.getURLVariable('scott')
@@ -59,11 +60,8 @@ var link_redirect = `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_1CdBpT9qth
                     `idnum=${sub_id}&` +
                     `kface=${kface}&` +
                     `fface=${fface}&` +
-                    `sface=${sface}&` +
-                    `kevin=${kevin}&` +
-                    `francis=${francis}&` +
-                    `scott=${scott}`
-
+                    `sface=${sface}&`+
+                    `cond=${cond}`
 kface = '<img src="./img/target_victim/Target' + kface + '.png">'
 fface = '<img src="./img/target_victim/Target' + fface + '.png">'
 sface = '<img src="./img/target_victim/Target' + sface + '.png">'
@@ -71,6 +69,7 @@ sface = '<img src="./img/target_victim/Target' + sface + '.png">'
 console.log(kface)
 console.log(fface)
 console.log(sface)
+console.log(cond)
 
 
 console.log(link_redirect)
