@@ -28,7 +28,7 @@ function shuffleArray(array) {
 }
 
 
-let sub_id = jsPsych.data.getURLVariable('idnum');
+let idnum = jsPsych.data.getURLVariable('idnum');
 let cond = jsPsych.data.getURLVariable('cond');
 let kface = jsPsych.data.getURLVariable('kface');
 let fface = jsPsych.data.getURLVariable('fface');
@@ -36,8 +36,8 @@ let sface = jsPsych.data.getURLVariable('sface');
 let got_url_vars = 1
 
 
-if (sub_id === undefined) {
-  sub_id = jsPsych.randomization.randomID(10);
+if (idnum === undefined) {
+  idnum = jsPsych.randomization.randomID(10);
   let face_array = [1,2,3,4,5]
   shuffleArray(face_array)
   kface = face_array[0];
@@ -45,15 +45,10 @@ if (sub_id === undefined) {
   sface = face_array[2];
   got_url_vars = 0
 }
-jsPsych.data.addProperties({ subject_id: sub_id });
-const fname = `${sub_id}.csv`;
+jsPsych.data.addProperties({ idnum: idnum });
+const fname = `${idnum}.csv`;
 console.log(fname)
 
-
-
-
-if (kface === undefined) {
-}
 
 jsPsych.data.addProperties({ kface: kface });
 jsPsych.data.addProperties({ fface: fface });
@@ -62,7 +57,7 @@ jsPsych.data.addProperties({ got_url_vars: got_url_vars });
 
 
 var link_redirect = `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_1CdBpT9qthmaMe2?` +
-                    `idnum=${sub_id}&` +
+                    `idnum=${idnum}&` +
                     `kface=${kface}&` +
                     `fface=${fface}&` +
                     `sface=${sface}&`+
