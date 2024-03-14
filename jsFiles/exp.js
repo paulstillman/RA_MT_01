@@ -30,35 +30,29 @@ function shuffleArray(array) {
 
 let sub_id = jsPsych.data.getURLVariable('idnum');
 let cond = jsPsych.data.getURLVariable('cond');
-let kevin = jsPsych.data.getURLVariable('kevin');
-let francis = jsPsych.data.getURLVariable('francis');
-let scott = jsPsych.data.getURLVariable('scott')
-
-
-if (sub_id === undefined) {
-  sub_id = jsPsych.randomization.randomID(10);
-}
-jsPsych.data.addProperties({ subject_id: sub_id });
-const fname = `${sub_id}.csv`;
-console.log(fname)
-
-
 let kface = jsPsych.data.getURLVariable('kface');
 let fface = jsPsych.data.getURLVariable('fface');
 let sface = jsPsych.data.getURLVariable('sface');
 let got_url_vars = 1
 
 
-if (kface === undefined) {
+if (sub_id === undefined) {
+  sub_id = jsPsych.randomization.randomID(10);
   let face_array = [1,2,3,4,5]
   shuffleArray(face_array)
   kface = face_array[0];
   fface = face_array[1];
   sface = face_array[2];
-  kevin = 'NOIMG'
-  francis = 'NOIMG'
-  scott = 'NOIMG'
   got_url_vars = 0
+}
+jsPsych.data.addProperties({ subject_id: sub_id });
+const fname = `${sub_id}.csv`;
+console.log(fname)
+
+
+
+
+if (kface === undefined) {
 }
 
 jsPsych.data.addProperties({ kface: kface });
