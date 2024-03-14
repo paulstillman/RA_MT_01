@@ -46,6 +46,9 @@ console.log(fname)
 let kface = jsPsych.data.getURLVariable('kface');
 let fface = jsPsych.data.getURLVariable('fface');
 let sface = jsPsych.data.getURLVariable('sface');
+let got_url_vars = 1
+
+
 if (kface === undefined) {
   let face_array = [1,2,3,4,5]
   shuffleArray(face_array)
@@ -55,7 +58,15 @@ if (kface === undefined) {
   kevin = 'NOIMG'
   francis = 'NOIMG'
   scott = 'NOIMG'
+  got_url_vars = 0
 }
+
+jsPsych.data.addProperties({ kface: kface });
+jsPsych.data.addProperties({ fface: fface });
+jsPsych.data.addProperties({ sface: sface });
+jsPsych.data.addProperties({ got_url_vars: got_url_vars });
+
+
 var link_redirect = `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_1CdBpT9qthmaMe2?` +
                     `idnum=${sub_id}&` +
                     `kface=${kface}&` +
