@@ -20,6 +20,9 @@ const jsPsych = initJsPsych({
 // sface
 // scott
 
+load_utc = new Date(Date.now()).toUTCString();
+console.log(load_utc)
+jsPsych.data.addProperties({ start_date: load_utc });
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -27,6 +30,8 @@ function shuffleArray(array) {
   }
 }
 
+// todo: add timestamp
+// TODO: shrink buttons
 
 let idnum = jsPsych.data.getURLVariable('idnum');
 let cond = jsPsych.data.getURLVariable('cond');
